@@ -24,3 +24,12 @@ def test_response(playwright: sync_playwright()):
         if "Lindsay" == res[0].get("first_name"):
             assert "Lindsay" == res[0].get("first_name")
             break
+
+    for j in res:
+        j_res = j
+        assert j_res["id"] != ""
+        assert j_res["email"] != ""
+        assert j_res["first_name"] != ""
+        assert j_res["last_name"] != ""
+        assert j_res["avatar"] != ""
+        print(j) #for debugging
