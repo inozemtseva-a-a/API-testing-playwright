@@ -1,7 +1,6 @@
 from playwright.sync_api import sync_playwright
 
-#the command for the terminal: pytest -v -s --alluredir=report test/ - test is a name of a directory
-#for report allure serve report - report is where logs are. You need to install allure report
+#the command for the terminal: pytest -v -s --alluredir=report foldr/
 
 def test_post(playwright: sync_playwright()):
     context = playwright.request.new_context()
