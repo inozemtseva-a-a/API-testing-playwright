@@ -1,6 +1,10 @@
+import logging
+
 from playwright.sync_api import sync_playwright
+from utils import LoggerDemo
 
 def test_response(playwright: sync_playwright()):
+    log = LoggerDemo().custom_logger(log_level=logging.WARNING)
     context = playwright.request.new_context(base_url="https://reqres.in/")
     query_params = {
         "page": "2"
@@ -9,12 +13,14 @@ def test_response(playwright: sync_playwright()):
         "content-type":"application/json",
         "x-api-key":"reqres-free-v1"
     })
-    print(response)
+    #print(response)
+    log.warning(response)
     assert response.status == 200
     assert response.status_text == 'OK'
     res = response.json()["data"]
+    log.warning(res)
     assert res != ""
-    print(res)
+    #print(res)
     #assert "Lindsay" == res[0].get("first_name")
 
     size = len(res)
